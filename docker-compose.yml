@@ -1,0 +1,19 @@
+version: '3.8' # добавлена версия compose. это последняя, которая поддерживает Docker Engine, начиная с 19
+
+services: # объявлений секции с сервисами / контейнерами, которые будут запущены
+  
+  nodpi:
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    build:
+      dockerfile: Dockerfile
+    container_name: nodpi
+    ports:
+      - 8881:8881
+    networks:
+      - default
+    restart: always
+    working_dir: /nodpi
+    command: python3 -u nodpi.py
+
